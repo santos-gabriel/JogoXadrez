@@ -29,13 +29,29 @@ namespace JogoXadrez.tabuleiro
 
         public void colocarPeca(Peca p, Posicao pos)
         {
+            if (verificaExistencia(pos))
+            {
+                throw new TabuleiroException("Já existe uma peça nesta posição!");
+            }
             this.Pecas[pos.Linha, pos.Coluna] = p;
             p.Posicao = pos;
         }
 
+        public Peca retirarPeca (Posicao p)
+        {
+            if (getPeca(p) == null)
+            {
+                return null;
+            }
+            Peca aux = getPeca(p);
+            aux.Posicao = null;
+            Pecas[p.Linha, p.Coluna] = null;
+            return aux;
+        }
+
         public bool posicaoValida(Posicao pos)
         {
-            if (pos.Linha < 0 || pos.Linha > this.Linhas || pos.Coluna < 0 || pos.Coluna > this.Colunas)
+            if (pos.Linha < 0 || pos.Linha >= this.Linhas || pos.Coluna < 0 || pos.Coluna >= this.Colunas)
             {
                 return false;
             }
