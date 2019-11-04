@@ -12,11 +12,12 @@ namespace JogoXadrez
             try
             {
                 PartidaDeXadrez partida = new PartidaDeXadrez();
-
+                Cor ultimoJogadorDaPartida = partida.JogadorAtual;
                 while (!partida.Terminada)
                 {
                     try
                     {
+                        ultimoJogadorDaPartida = partida.JogadorAtual;
                         Console.Clear();
                         Tela.imprimirPartida(partida);
                         Console.WriteLine();
@@ -42,6 +43,8 @@ namespace JogoXadrez
                         Console.ReadLine();
                     }
                 }
+                Console.Clear();
+                Tela.imprimirPartidaXequeMate(ultimoJogadorDaPartida, partida);
 
             }
             catch (TabuleiroException e)

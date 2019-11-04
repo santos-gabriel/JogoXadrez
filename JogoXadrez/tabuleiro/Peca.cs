@@ -24,6 +24,11 @@ namespace JogoXadrez.tabuleiro
             QtdeMovimentos++;
         }
 
+        public void decrementarMovimentos()
+        {
+            QtdeMovimentos--;
+        }
+
         public bool existeMovimentosPossiveis()
         {
             bool [,] mat = movimentosPossiveis();
